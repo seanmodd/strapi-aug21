@@ -9,7 +9,7 @@ export default function NewsItem({ news }) {
     <div className={styles.news}>
       <div className={styles.img}>
         <Image
-          src={news.image ? news.image.formats.thumbnail.url : '/images/hero.jpg'}
+          src={news.image ? news.image.url : '/images/hero.jpg'}
           width={150}
           height={100}
         />
