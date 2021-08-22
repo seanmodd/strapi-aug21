@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Modal from "@/components/Modal";
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout";
@@ -12,7 +12,7 @@ import { parseCookies } from "@/utils/index";
 import ImageUpload from "@/components/ImageUpload";
 
 
-export default function AddNews({ token }) {
+export default function AddNews({sportNews, token }) {
   const [values, setValues] = useState({
     name: "",
     detail: "",
@@ -20,19 +20,18 @@ export default function AddNews({ token }) {
     time: "",
   });
 
+
   const { name, detail, date, time } = values;
 
 
-  // const [imagePreview, setImagePreview] = useState(
-  //   sportNews.image ? sportNews.image.url : null
-  // );
+  const [imagePreview, setImagePreview] = useState("");
  
   const [showModal, setShowModal] = useState(false);
 
   const imageUploaded = async (e) => {
-    const res = await fetch(`${API_URL}/sports/${values.id}`);
+    const res = await fetch(`${API_URL}/sports`);
     const data = await res.json();
-    setImagePreview(data.image.formats.thumbnail.url);
+    // setImagePreview(data.image.url);
     setShowModal(false);
   };
 
@@ -124,13 +123,13 @@ export default function AddNews({ token }) {
         </div>
         <input className="btn" type="submit" value="Add News" />
       </form>
-      {/* {imagePreview ? (
+      {imagePreview ? (
         <Image src={imagePreview} height={100} width={180} />
       ) : (
         <div>
           <p>No Image Available</p>
         </div>
-      )} */}
+      )}
       <div>
         <button onClick={() => setShowModal(true)} className="btn-edit">
           Update Image
@@ -138,7 +137,7 @@ export default function AddNews({ token }) {
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         <ImageUpload
-          sportNewsId={values.id}
+          sportNewsId={token.id}
           imageUploaded={imageUploaded}
           token={token}
         />
