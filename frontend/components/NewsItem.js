@@ -2,11 +2,13 @@ import { FaUser } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
+import { MyHStack } from '../styles/styles';
+
 import styles from '@/styles/NewsItem.module.css';
 
 export default function NewsItem({ news }) {
   return (
-    <div className={styles.news}>
+    <MyHStack>
       <div className={styles.img}>
         <Image
           src={news.image ? news.image.url : '/images/hero.jpg'}
@@ -29,6 +31,6 @@ export default function NewsItem({ news }) {
         </Link>
       </div>
       <br />
-    </div>
+    </MyHStack>
   );
 }

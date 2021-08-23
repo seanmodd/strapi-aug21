@@ -1,5 +1,30 @@
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme, VStack, HStack } from '@chakra-ui/react';
 import 'typeface-poppins';
+import styles from '@/styles/NewsDashboard.module.css';
+
+export const MyHStack = ({ children }) => (
+  <HStack
+    flex="1"
+    borderWidth="2px"
+    justify="space-between"
+    px="20px"
+    py="10px"
+    transition="all 0.1s ease-out"
+    my="40px"
+    borderRadius="15px"
+    borderColor="rgba(0, 0, 0, 0.1)"
+    backgroundColor="rgba(0, 0, 0, 0.02)"
+    _hover={{
+      borderColor: 'rgba(7, 255, 7, 0.719)',
+      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+      boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.1)',
+      transition: 'all 0.1s ease-out',
+      fontWeight: 'semibold',
+    }}
+  >
+    {children}
+  </HStack>
+);
 
 export const theme = extendTheme({
   styles: {
